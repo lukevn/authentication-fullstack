@@ -1,8 +1,8 @@
 {
-  "name": "backend",
+  "name": "authentication-backend",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "Authhentication API with NestJS",
+  "author": "Luk3VN",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -22,8 +22,10 @@
   },
   "dependencies": {
     "@nestjs/common": "^9.0.0",
+    "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "@nestjs/swagger": "^6.1.3",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
