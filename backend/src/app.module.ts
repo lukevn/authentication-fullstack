@@ -3,24 +3,28 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './users/users.module';
+
+const envModule = ConfigModule.forRoot({
+  isGlobal: true,
+});
+
+import { DB_CONFIG } from './config/database';
+
+const { host, port, username, password, database, synchronize } = DB_CONFIG;
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      isGlobal: true,
-    }),
+    envModule,
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: process.env.DB_HOST,
-      port: parseInt(process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+      host,
+      port,
+      username,
+      password,
+      database,
       entities: [],
-      synchronize: process.env.DB_SYNCHRONIZE === 'true',
+      synchronize,
     }),
-    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
