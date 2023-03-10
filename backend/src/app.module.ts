@@ -10,13 +10,14 @@ const envModule = ConfigModule.forRoot({
 
 import { DB_CONFIG } from './config/database';
 
-const { host, port, username, password, database, synchronize } = DB_CONFIG;
+const { type, host, port, username, password, database, synchronize } =
+  DB_CONFIG;
 
 @Module({
   imports: [
     envModule,
     TypeOrmModule.forRoot({
-      type: 'mysql',
+      type,
       host,
       port,
       username,
