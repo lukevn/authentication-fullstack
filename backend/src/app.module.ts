@@ -8,23 +8,15 @@ const envModule = ConfigModule.forRoot({
   isGlobal: true,
 });
 
+// import environment variables after envModule
 import { DB_CONFIG } from './config/database';
-
-const { type, host, port, username, password, database, synchronize } =
-  DB_CONFIG;
 
 @Module({
   imports: [
     envModule,
     TypeOrmModule.forRoot({
-      type,
-      host,
-      port,
-      username,
-      password,
-      database,
+      ...DB_CONFIG,
       entities: [],
-      synchronize,
     }),
   ],
   controllers: [AppController],
